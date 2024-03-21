@@ -15,7 +15,7 @@ class Spaceasteroids:
     def __init__(self):
         self.init_pygame()    
         self.screen = pygame.display.set_mode((1600, 900)) # create a window (width,height) to draw and display
-        self.bg = load_sprite("space1", False)
+        self.bg = load_sprite("assets/space1", False)
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 60)
         self.text = ""
@@ -38,7 +38,8 @@ class Spaceasteroids:
             self.handle_input()
             self.process_game_logic()
             self.draw()
-        
+
+
 
     def init_pygame(self):
         pygame.init()     #initialize pygame
@@ -51,7 +52,9 @@ class Spaceasteroids:
                 pygame.quit()
             elif (self.spacefighter and event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE):
                 self.spacefighter.shoot()
+
         
+        self.init_pygame()
         is_key_pressed = pygame.key.get_pressed()
         
         if self.spacefighter:
@@ -95,7 +98,8 @@ class Spaceasteroids:
 
         if not self.asteroids and self.spacefighter:
             self.text = "Congrat. You won!"
-    
+
+
     def draw(self):
         self.screen.blit(self.bg, (0,0))   # set the screen to be background
         for game_object in self.get_game_objects():
@@ -110,8 +114,10 @@ class Spaceasteroids:
         pygame.display.update()
         self.clock.tick(60) # set the speed of objects move
 
+
     def get_game_objects(self):   # a helper method to returns game objects 
         game_objects = [*self.asteroids, *self.bullets]
         if self.spacefighter:
             game_objects.append(self.spacefighter)
         return game_objects
+    

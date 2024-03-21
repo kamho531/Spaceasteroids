@@ -40,10 +40,10 @@ class Spacefighter(GameObject):
     
     def __init__(self, position, create_bullet_callback):
         self.create_bullet_callback = create_bullet_callback
-        self.laser_sound = load_sound("laser")
+        self.laser_sound = load_sound("assets/laser")
         # make a copy of the original UP vector
         self.direction = Vector2(UP)
-        super().__init__(position, load_sprite("spacefighter8"), Vector2(0)) # calls the GameObject constructor with a specific image and a zero velocity
+        super().__init__(position, load_sprite("assets/spacefighter8"), Vector2(0)) # calls the GameObject constructor with a specific image and a zero velocity
         
     def rotate(self, clockwise=True):
         if clockwise:
@@ -77,10 +77,10 @@ class Asteroid(GameObject):
     def __init__(self, position, create_asteroid_callback, size=3):
         self.create_asteroid_callback = create_asteroid_callback  # an asteroid to be able to create new asteroids
         self.size = size
-        self.bomb_sound = load_sound("Bomb2")
+        self.bomb_sound = load_sound("assets/Bomb2")
         size_to_scale = {3: 1.0, 2: 0.5, 1: 0.25}    # set the scale of asteroid to split 
         scale = size_to_scale[size]
-        sprite = rotozoom(load_sprite("asteroid"), 0, scale)  # load the image of asteroid
+        sprite = rotozoom(load_sprite("assets/asteroid"), 0, scale)  # load the image of asteroid
         super().__init__(position, sprite, get_random_velocity(1, 3))
         
     def split(self):
@@ -92,7 +92,7 @@ class Asteroid(GameObject):
 
 class Bullet(GameObject):
     def __init__(self, position, velocity):
-        super().__init__(position, load_sprite("bullet1"), velocity) 
+        super().__init__(position, load_sprite("assets/bullet1"), velocity) 
         
     def move(self, surface):
         self.position = self.position + self.velocity  # disabling the wrapping only for bullets
